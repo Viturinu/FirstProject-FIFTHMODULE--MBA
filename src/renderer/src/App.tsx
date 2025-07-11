@@ -4,7 +4,9 @@ export function App(): React.JSX.Element {
 
   return (
     <>
-      <text className="text-3xl font-bold" style={{ fontFamily: "Inter" }}>Primeiro App Desktop</text>
+      <div className="h-screen w-screen bg-rotion-900">
+        <text className="text-5xl text-rotion-900">Teste</text>
+      </div>
     </>
   )
 }

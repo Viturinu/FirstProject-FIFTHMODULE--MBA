@@ -2,14 +2,20 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import path from "node:path"
 
 function createWindow(): void {
   // Create the browser window.
+if (process.platform === "darwin"){
+  app.dock?.setIcon(path.resolve(__dirname, "icon.png")) //funcionalidade apenas do Darwin, ou seja, do MAC - APPLE | DOCK é aquela bandeija do Mac, parecido com o que foi tentado na versão Linux - Deepin
+}
+
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
     show: false,
     autoHideMenuBar: true,
+    backgroundColor: '#17141f', //importante pois a cor nativa de fundo é branco, então na hora de maximizar, poder dar alguns flashes brancos na tela
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
